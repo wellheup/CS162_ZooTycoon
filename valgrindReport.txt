@@ -1,0 +1,251 @@
+g++ -std=c++0x -Wall -pedantic-errors -g -c main.cpp
+In file included from main.cpp:11:0:
+zoo.hpp: In destructor ‘Zoo::~Zoo()’:
+zoo.hpp:141:23: warning: possible problem detected in invocation of delete operator: [enabled by default]
+    delete tigerArray[i];
+                       ^
+zoo.hpp:141:23: warning: invalid use of incomplete type ‘class Tiger’ [enabled by default]
+zoo.hpp:10:7: warning: forward declaration of ‘class Tiger’ [enabled by default]
+ class Tiger;
+       ^
+zoo.hpp:141:23: note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined
+    delete tigerArray[i];
+                       ^
+zoo.hpp:148:25: warning: possible problem detected in invocation of delete operator: [enabled by default]
+    delete penguinArray[i];
+                         ^
+zoo.hpp:148:25: warning: invalid use of incomplete type ‘class Penguin’ [enabled by default]
+zoo.hpp:11:7: warning: forward declaration of ‘class Penguin’ [enabled by default]
+ class Penguin;
+       ^
+zoo.hpp:148:25: note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined
+    delete penguinArray[i];
+                         ^
+zoo.hpp:155:24: warning: possible problem detected in invocation of delete operator: [enabled by default]
+    delete turtleArray[i];
+                        ^
+zoo.hpp:155:24: warning: invalid use of incomplete type ‘class Turtle’ [enabled by default]
+zoo.hpp:12:7: warning: forward declaration of ‘class Turtle’ [enabled by default]
+ class Turtle;
+       ^
+zoo.hpp:155:24: note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined
+    delete turtleArray[i];
+                        ^
+zoo.hpp:162:29: warning: possible problem detected in invocation of delete operator: [enabled by default]
+    delete bonusAnimalArray[i];
+                             ^
+zoo.hpp:162:29: warning: invalid use of incomplete type ‘class BonusAnimal’ [enabled by default]
+zoo.hpp:13:7: warning: forward declaration of ‘class BonusAnimal’ [enabled by default]
+ class BonusAnimal;
+       ^
+zoo.hpp:162:29: note: neither the destructor nor the class-specific operator delete will be called, even if they are declared when the class is defined
+    delete bonusAnimalArray[i];
+                             ^
+g++ -std=c++0x -Wall -pedantic-errors -g -c isValidInput.cpp
+isValidInput.cpp: In function ‘bool isStringWithinRange(std::string, int, int)’:
+isValidInput.cpp:136:24: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (userIn.length() < low || userIn.length() > high) {
+                        ^
+isValidInput.cpp:136:49: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+  if (userIn.length() < low || userIn.length() > high) {
+                                                 ^
+g++ -std=c++0x -Wall -pedantic-errors -g -c menuShell.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c animal.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c turtle.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c tiger.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c penguin.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c bonusAnimal.cpp
+g++ -std=c++0x -Wall -pedantic-errors -g -c zoo.cpp
+zoo.cpp: In member function ‘void Zoo::initText()’:
+zoo.cpp:568:13: warning: left operand of comma operator has no effect [-Wunused-value]
+  buyTigers, buyPenguins, buyTurtles, buyBonusAnimal;
+             ^
+zoo.cpp:568:26: warning: right operand of comma operator has no effect [-Wunused-value]
+  buyTigers, buyPenguins, buyTurtles, buyBonusAnimal;
+                          ^
+zoo.cpp:568:38: warning: right operand of comma operator has no effect [-Wunused-value]
+  buyTigers, buyPenguins, buyTurtles, buyBonusAnimal;
+                                      ^
+zoo.cpp:568:52: warning: right operand of comma operator has no effect [-Wunused-value]
+  buyTigers, buyPenguins, buyTurtles, buyBonusAnimal;
+                                                    ^
+g++  main.o isValidInput.o menuShell.o animal.o turtle.o tiger.o penguin.o bonusAnimal.o zoo.o -o main
+flip3 ~/CS162/project2 232% valgrind --leak-check=full ./main
+==6645== Memcheck, a memory error detector
+==6645== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6645== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6645== Command: ./main
+==6645==
+Would you like to play the Zoo Tycoon game?
+1. Yes
+2. No
+1
+Would like to use the extra credit bonus animal for this play through?
+1. Yes
+2. No
+1
+What will the bonus animal be named?
+jjo
+How much will a/an jjo cost? ($100-25000)
+100
+How much of their initial cost does a/an jjo make per day? (1%-25%)
+5
+How much of base food cost does jjo food cost? (1%-2000%)
+25
+How many babies does a/an jjo have when giving birth? (1-100)
+3
+
+Greetings and welcome to Phillip Wellheuser's Project 2, Zoo Tycoon.
+To start your new zoo, you have $100,000 to buy animals for your day 1 attractions.
+If at any point you end the day with no animals at your zoo, it will end the game.
+
+How many Tigers would you like to buy? (Enter 1 or 2)
+2
+Remaining funds: $80000
+How many Penguins would you like to buy? (Enter 1 or 2)
+2
+Remaining funds: $78000
+How many Turtles would you like to buy? (Enter 1 or 2)
+2
+Remaining funds: $77800
+How many jjo(s) would you like to buy? (Enter 1 or 2)
+2
+Remaining funds: $77600
+
+Day: 0
+Remaining funds: $77600.00
+Tigers: 2
+Penguins: 2
+Turtles: 2
+jjo: 2
+
+Would you like to continue the Zoo Tycoon game?
+1. Yes
+2. No
+1
+What type of feed would you like to give the animals today?
+1. Cheap feed - 0.5 times the normal price but 2 times the health risk
+2. Normal feed - standard price ($10), standard health risk
+3. Premium feed - 2 times the normal price but 0.5 times the health risk
+2
+Unfortunately, one of your Turtles has died due to illness.
+Today Tigers made: $4000
+Today Penguins made: $200
+Today Turtles made: $5
+Today jjo made: $10
+The total profit today is: $4215.00
+
+
+Day: 1
+Remaining funds: $81680.00
+Tigers: 2
+Penguins: 2
+Turtles: 1
+jjo: 2
+
+Would you like to buy animals?
+1. Yes
+2. No
+1
+
+Day: 1
+Remaining funds: $81680.00
+Tigers: 2
+Penguins: 2
+Turtles: 1
+jjo: 2
+
+Reminder: if you purchase more than you can afford you will go into debt.
+Negative funds at the end of the day will result in losing the game.
+Would you like to buy animals?
+1. Tigers - $10000 each
+2. Penguins - $1000 each
+3. Turtles - $100 each
+4. jjo - $100 each
+5. Nevermind
+3
+How many Turtles would you like to buy? (0-10)
+3
+Remaining funds: $81380.00
+Would you like to buy animals?
+1. Yes
+2. No
+2
+
+Day: 1
+Remaining funds: $81380.00
+Tigers: 2
+Penguins: 2
+Turtles: 4
+jjo: 2
+
+Would you like to continue the Zoo Tycoon game?
+1. Yes
+2. No
+2
+It seems your zoo has failed in the end. Your days as a zoo entrepreneur are over.
+
+Day: 2
+Remaining funds: $81380.00
+Tigers: 2
+Penguins: 2
+Turtles: 4
+jjo: 2
+
+==6645== Conditional jump or move depends on uninitialised value(s)
+==6645==    at 0x4C2B180: operator delete(void*) (vg_replace_malloc.c:576)
+==6645==    by 0x402C1F: Zoo::~Zoo() (zoo.hpp:141)
+==6645==    by 0x401E85: main (main.cpp:20)
+==6645==
+==6645== Mismatched free() / delete / delete []
+==6645==    at 0x4C2B1CD: operator delete(void*) (vg_replace_malloc.c:576)
+==6645==    by 0x402C61: Zoo::~Zoo() (zoo.hpp:144)
+==6645==    by 0x401E85: main (main.cpp:20)
+==6645==  Address 0x5a23ec0 is 0 bytes inside a block of size 80 alloc'd
+==6645==    at 0x4C2A8E8: operator new[](unsigned long) (vg_replace_malloc.c:423)
+==6645==    by 0x402673: Zoo::Zoo() (zoo.hpp:133)
+==6645==    by 0x401E67: main (main.cpp:19)
+==6645==
+==6645== Conditional jump or move depends on uninitialised value(s)
+==6645==    at 0x4C2B180: operator delete(void*) (vg_replace_malloc.c:576)
+==6645==    by 0x402C9C: Zoo::~Zoo() (zoo.hpp:148)
+==6645==    by 0x401E85: main (main.cpp:20)
+==6645==
+==6645== Conditional jump or move depends on uninitialised value(s)
+==6645==    at 0x4C2B180: operator delete(void*) (vg_replace_malloc.c:576)
+==6645==    by 0x402D29: Zoo::~Zoo() (zoo.hpp:155)
+==6645==    by 0x401E85: main (main.cpp:20)
+==6645==
+==6645== Conditional jump or move depends on uninitialised value(s)
+==6645==    at 0x4C2B180: operator delete(void*) (vg_replace_malloc.c:576)
+==6645==    by 0x402DB6: Zoo::~Zoo() (zoo.hpp:162)
+==6645==    by 0x401E85: main (main.cpp:20)
+==6645==
+Would you like to play again?
+1. Yes
+2. No
+2
+==6645==
+==6645== HEAP SUMMARY:
+==6645==     in use at exit: 32 bytes in 1 blocks
+==6645==   total heap usage: 170 allocs, 169 frees, 8,706 bytes allocated
+==6645==
+==6645== 32 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==6645==    at 0x4C2A243: operator new(unsigned long) (vg_replace_malloc.c:334)
+==6645==    by 0x407E79: Zoo::addTurtles(int, bool) (zoo.cpp:487)
+==6645==    by 0x40782F: Zoo::buyAnimals(int, int) (zoo.cpp:392)
+==6645==    by 0x405853: Zoo::zooStartup() (zoo.cpp:87)
+==6645==    by 0x404A8B: Zoo::runGame() (zoo.cpp:28)
+==6645==    by 0x401E76: main (main.cpp:20)
+==6645==
+==6645== LEAK SUMMARY:
+==6645==    definitely lost: 32 bytes in 1 blocks
+==6645==    indirectly lost: 0 bytes in 0 blocks
+==6645==      possibly lost: 0 bytes in 0 blocks
+==6645==    still reachable: 0 bytes in 0 blocks
+==6645==         suppressed: 0 bytes in 0 blocks
+==6645==
+==6645== For counts of detected and suppressed errors, rerun with: -v
+==6645== Use --track-origins=yes to see where uninitialised values come from
+==6645== ERROR SUMMARY: 32 errors from 6 contexts (suppressed: 0 from 0)
+flip3 ~/CS162/project2 233%

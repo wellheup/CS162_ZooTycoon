@@ -1,0 +1,795 @@
+// Header files section
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+
+// constant for base food cost
+const double BASE_FOOD_COST = 10;
+
+// Animal class declaration
+class Animal
+{
+public:  
+   // constructors
+   Animal();
+   Animal(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff);
+  
+   // getter functions
+   int getAge();
+   double getCost();
+   int getNumberOfBabies();
+   double getBaseFoodCost();
+   double getPayoff();
+
+   // setter functions
+   void setAge(int newAge);
+   void setCost(double newCost);
+   void setNumberOfBabies(int newNumberOfBabies);
+   void setBaseFoodCost(double newBaseFoodCost);
+   void setPayoff(double newPayoff);
+
+private:
+   // member variables
+   int age;
+   double cost;
+   int numberOfBabies;
+   double baseFoodCost;
+   double payoff;
+};
+
+// Animal class implementation
+
+// default constructor implementation
+Animal::Animal()
+{
+   age = 0;
+   cost = 0.0;
+   numberOfBabies = 0;
+   baseFoodCost = 0.0;
+   payoff = 0.0;
+}
+
+// parameterized constructor implementation
+Animal::Animal(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff)
+{
+   age = newAge;
+   cost = newCost;
+   numberOfBabies = newNumberOfBabies;
+   baseFoodCost = newBaseFoodCost;
+   payoff = newPayoff;
+}
+
+// getAge function implementation
+int Animal::getAge()
+{
+   return age;
+}
+
+// getCost function implementation
+double Animal::getCost()
+{
+   return cost;
+}
+
+// getNumberOfBabies function implementation
+int Animal::getNumberOfBabies()
+{
+   return numberOfBabies;
+}
+
+// getBaseFoodCost function implementation
+double Animal::getBaseFoodCost()
+{
+   return baseFoodCost;
+}
+
+// getPayoff function implementation
+double Animal::getPayoff()
+{
+   return payoff;
+}
+
+// setAge function implementation
+void Animal::setAge(int newAge)
+{
+   age = newAge;
+}
+
+// setCost function implementation
+void Animal::setCost(double newCost)
+{
+   cost = newCost;
+}
+
+// setNumberOfBabies function implementation
+void Animal::setNumberOfBabies(int newNumberOfBabies)
+{
+   numberOfBabies = newNumberOfBabies;
+}
+
+// setBaseFoodCost function implementation
+void Animal::setBaseFoodCost(double newBaseFoodCost)
+{
+   baseFoodCost = newBaseFoodCost;
+}
+
+// setPayoff function implementation
+void Animal::setPayoff(double newPayoff)
+{
+   payoff = newPayoff;
+}
+
+// Tiger class declaration
+class Tiger : public Animal
+{
+public:
+   // constructors
+   Tiger();
+   Tiger(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff);
+};
+
+// Tiger class implementation
+
+// default constructor implementation
+Tiger::Tiger() : Animal()
+{}
+
+// parameterized constructor implementation
+Tiger::Tiger(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff)
+   : Animal(newAge, newCost, newNumberOfBabies, newBaseFoodCost, newPayoff)
+{}
+
+// Penguin class declaration
+class Penguin : public Animal
+{
+public:
+   // constructors
+   Penguin();
+   Penguin(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff);
+};
+
+// Penguin class implementation
+
+// default constructor implementation
+Penguin::Penguin() : Animal()
+{}
+
+// parameterized constructor implementation
+Penguin::Penguin(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff)
+   : Animal(newAge, newCost, newNumberOfBabies, newBaseFoodCost, newPayoff)
+{}
+
+// Turtle class declaration
+class Turtle : public Animal
+{
+public:
+   // constructors
+   Turtle();
+   Turtle(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff);
+};
+
+// Turtle class implementation
+
+// default constructor implementation
+Turtle::Turtle() : Animal()
+{}
+
+// parameterized constructor implementation
+Turtle::Turtle(int newAge, double newCost, int newNumberOfBabies, double newBaseFoodCost, double newPayoff)
+   : Animal(newAge, newCost, newNumberOfBabies, newBaseFoodCost, newPayoff)
+{}
+
+// Zoo class declaration
+class Zoo
+{
+public:
+   // constructor
+   Zoo();
+   Zoo(double initialBalance);
+
+   void addTiger(Tiger newTiger);
+   void addPenguin(Penguin newPenguin);
+   void addTurtle(Turtle newTurtle);
+   bool addTigerBabies();
+   bool addPenguinBabies();
+   bool addTurtleBabies();
+
+   bool removeTiger();
+   bool removePenguin();
+   bool removeTurtle();
+  
+   Tiger* getTigers();
+   Penguin* getPenguins();
+   Turtle* getTurtles();
+
+   void generateRandomEvent();
+   void calculateProfit();
+   void incrementAge();
+   void setBalance(double newBalance);
+   void resetProfit();
+
+   double getBalance();
+   double getProfit();
+
+private:
+   // member variables and arrays
+   Tiger *tigersArr;
+   Penguin *penguinsArr;
+   Turtle *turtlesArr;
+   int tigersCapacity;
+   int penguinsCapacity;
+   int turtlesCapacity;
+   int tigersCount;
+   int penguinsCount;
+   int turtlesCount;  
+   double balance;
+   double profit;
+};
+
+// Zoo class implementation
+
+// default constructor implementation
+Zoo::Zoo()
+{
+   tigersCapacity = 10;
+   penguinsCapacity = 10;
+   turtlesCapacity = 10;
+
+   tigersArr = new Tiger[tigersCapacity];
+   penguinsArr = new Penguin[penguinsCapacity];
+   turtlesArr = new Turtle[turtlesCapacity];
+
+   balance = 1000000;
+   profit = 0;
+   tigersCount = 0;
+   penguinsCount = 0;
+   turtlesCount = 0;  
+}
+
+// parameterized constructor implementation
+Zoo::Zoo(double initialBalance)
+{
+   tigersCapacity = 10;
+   penguinsCapacity = 10;
+   turtlesCapacity = 10;
+
+   tigersArr = new Tiger[tigersCapacity];
+   penguinsArr = new Penguin[penguinsCapacity];
+   turtlesArr = new Turtle[turtlesCapacity];
+
+   balance = initialBalance;
+   profit = 0;
+   tigersCount = 0;
+   penguinsCount = 0;
+   turtlesCount = 0;  
+}
+
+// addTiger function implementation
+void Zoo::addTiger(Tiger newTiger)
+{
+   if (tigersCount == tigersCapacity)
+   {
+       Tiger* resizedArr = new Tiger[2 * tigersCapacity];
+       for (int i = 0; i < tigersCapacity; i++)
+       {
+           resizedArr[i] = tigersArr[i];
+       }
+       delete[] tigersArr;
+
+       tigersCapacity = 2 * tigersCapacity;
+       tigersArr = resizedArr;
+   }
+
+   tigersArr[tigersCount] = newTiger;  
+   tigersCount++;  
+   balance = balance - newTiger.getCost();
+}
+
+// addPenguin function implementation
+void Zoo::addPenguin(Penguin newPenguin)
+{
+   if (penguinsCount == penguinsCapacity)
+   {
+       Penguin* resizedArr = new Penguin[2 * penguinsCapacity];
+       for (int i = 0; i < penguinsCapacity; i++)
+       {
+           resizedArr[i] = penguinsArr[i];
+       }
+       delete[] penguinsArr;
+
+       penguinsCapacity = 2 * penguinsCapacity;
+       penguinsArr = resizedArr;
+   }
+  
+   penguinsArr[penguinsCount] = newPenguin;  
+   penguinsCount++;
+   balance = balance - newPenguin.getCost();
+}
+
+// addTurtle function implementation
+void Zoo::addTurtle(Turtle newTurtle)
+{
+   if (turtlesCount == turtlesCapacity)
+   {
+       Turtle* resizedArr = new Turtle[2 * turtlesCapacity];
+       for (int i = 0; i < turtlesCapacity; i++)
+       {
+           resizedArr[i] = turtlesArr[i];
+       }      
+       delete[] turtlesArr;
+
+       turtlesCapacity = 2 * turtlesCapacity;
+       turtlesArr = resizedArr;
+   }
+
+   turtlesArr[turtlesCount] = newTurtle;  
+   turtlesCount++;
+   balance = balance - newTurtle.getCost();
+}
+
+// addTigerBabies function implementation
+bool Zoo::addTigerBabies()
+{
+   bool adultTigersFound = false;  
+   for (int i = 0; i < tigersCount; i++)
+   {
+       if (tigersArr[i].getAge() >= 3)
+       {
+           tigersArr[i].setNumberOfBabies(tigersArr[i].getNumberOfBabies() + 1);
+           adultTigersFound = true;
+       }
+   }
+  
+   return adultTigersFound;
+}
+
+// addPenguinBabies function implementation
+bool Zoo::addPenguinBabies()
+{
+   bool adultPenguinsFound = false;  
+   for (int i = 0; i < penguinsCount; i++)
+   {
+       if (penguinsArr[i].getAge() >= 3)
+       {
+           penguinsArr[i].setNumberOfBabies(penguinsArr[i].getNumberOfBabies() + 5);
+           adultPenguinsFound = true;
+       }
+   }
+  
+   return adultPenguinsFound;
+}
+
+// addTurtleBabies function implementation
+bool Zoo::addTurtleBabies()
+{
+   bool adultTurtlesFound = false;  
+   for (int i = 0; i < turtlesCount; i++)
+   {
+       if (turtlesArr[i].getAge() >= 3)
+       {
+           turtlesArr[i].setNumberOfBabies(turtlesArr[i].getNumberOfBabies() + 10);
+           adultTurtlesFound = true;
+       }
+   }
+  
+   return adultTurtlesFound;
+}
+
+// removeTiger function implementation
+bool Zoo::removeTiger()
+{
+   if (tigersCount == 0)
+   {
+       return false;
+   }
+   else
+   {      
+       cout << "A Tiger is removed from the zoo." << endl;
+       tigersCount--;
+       return true;
+   }
+}
+
+// removePenguin function implementation
+bool Zoo::removePenguin()
+{
+   if (penguinsCount == 0)
+   {
+       return false;
+   }
+   else
+   {
+       cout << "A Penguin is removed from the zoo." << endl;
+       penguinsCount--;
+       return true;
+   }
+}
+
+// removeTurtle function implementation
+bool Zoo::removeTurtle()
+{
+   if (turtlesCount == 0)
+   {
+       return false;
+   }
+   else
+   {
+       cout << "A Turtle is removed from the zoo." << endl;
+       turtlesCount--;
+       return true;
+   }
+}
+
+// getTigers function implementation
+Tiger* Zoo::getTigers()
+{
+   return tigersArr;
+}
+
+// getPenguins function implementation
+Penguin* Zoo::getPenguins()
+{
+   return penguinsArr;
+}
+
+// getTurtles function implementation
+Turtle* Zoo::getTurtles()
+{
+   return turtlesArr;
+}
+
+// generateRandomEvent function implementation
+void Zoo::generateRandomEvent()
+{
+   int randEvent = rand() % 4 + 1;
+   int randType;
+   int randBonus;
+   bool flag;
+  
+   switch (randEvent)
+   {
+   case 1:
+       cout << "Random Event: A sickness occurs to an animal in the zoo." << endl;
+       flag = false;
+      
+       randType = rand() * 3 + 1;
+      
+       if (randType == 1)
+       {
+           flag = removeTiger();
+
+           if (!flag)
+               flag = removePenguin();
+
+           if (!flag)
+               flag = removeTurtle();
+       }
+       else if (randType == 2)
+       {
+           flag = removePenguin();
+
+           if (!flag)
+               flag = removeTurtle();
+
+           if (!flag)
+               flag = removeTiger();
+       }
+       else
+       {
+           flag = removeTurtle();
+          
+           if (!flag)
+               flag = removeTiger();
+
+           if (!flag)
+               flag = removePenguin();          
+       }
+
+       if (!flag)
+       {
+           cout << "No animal is removed from the zoo." << endl;
+       }
+       break;
+
+   case 2:
+       cout << "Random Event: A boom in zoo attendance occurs." << endl;
+
+       for (int i = 0; i < tigersCount; i++)
+       {
+           randBonus = rand() % 251 + 250;
+           tigersArr[i].setPayoff(tigersArr[i].getPayoff() + randBonus);
+       }
+       break;
+
+   case 3:
+       cout << "Random Event: A baby animal is born." << endl;
+       flag = false;
+
+       randType = rand() * 3 + 1;
+
+       if (randType == 1)
+       {
+           flag = addTigerBabies();
+
+           if (!flag)
+               flag = addPenguinBabies();
+
+           if (!flag)
+               flag = addTurtleBabies();
+       }      
+       else if (randType == 2)
+       {
+           flag = addPenguinBabies();
+
+           if (!flag)
+               flag = addTurtleBabies();
+
+           if (!flag)
+               flag = addTigerBabies();
+       }
+       else
+       {
+           flag = addTurtleBabies();
+
+           if (!flag)
+               flag = addTigerBabies();
+
+           if (!flag)
+               flag = addPenguinBabies();
+       }
+
+       if (!flag)
+       {
+           cout << "No babies are added to the zoo." << endl;
+       }
+       break;
+
+   case 4:
+       cout << "Random Event: Nothing happens." << endl;
+       break;
+   }
+}
+
+// calculateProfit function implementation
+void Zoo::calculateProfit()
+{
+   for (int i = 0; i < tigersCount; i++)
+   {
+       profit = profit + tigersArr[i].getPayoff();
+   }
+
+   for (int i = 0; i < penguinsCount; i++)
+   {
+       profit = profit + penguinsArr[i].getPayoff();
+   }
+
+   for (int i = 0; i < turtlesCount; i++)
+   {
+       profit = profit + turtlesArr[i].getPayoff();
+   }
+}
+
+// incrementAge function implementation
+void Zoo::incrementAge()
+{
+   for (int i = 0; i < tigersCount; i++)
+   {
+       tigersArr[i].setAge(tigersArr[i].getAge() + 1);
+       balance = balance - tigersArr[i].getBaseFoodCost();
+   }
+  
+   for (int i = 0; i < penguinsCount; i++)
+   {
+       penguinsArr[i].setAge(penguinsArr[i].getAge() + 1);
+       balance = balance - penguinsArr[i].getBaseFoodCost();
+   }
+  
+   for (int i = 0; i < turtlesCount; i++)
+   {
+       turtlesArr[i].setAge(turtlesArr[i].getAge() + 1);
+       balance = balance - turtlesArr[i].getBaseFoodCost();
+   }
+}
+
+// setBalance function implementation
+void Zoo::setBalance(double newBalance)
+{
+   balance = newBalance;
+}
+
+// resetProfit function implementation
+void Zoo::resetProfit()
+{
+   profit = 0;
+}
+
+// getBalance function implementation
+double Zoo::getBalance()
+{
+   return balance;
+}
+
+// getProfit function implementation
+double Zoo::getProfit()
+{
+   return profit;
+}
+
+// start main function
+int main()
+{
+   srand(time(NULL));
+  
+   const double TIGER_COST = 10000;
+   const double PENGUIN_COST = 1000;
+   const double TURTLE_COST = 100;
+
+   Zoo z(1000000);
+   int choice;
+   int n = 0;  
+   int day = 0;
+   int purchase;
+   int animalType;
+   int again;
+   bool play = false;
+   bool exit = false;
+
+   cout << " *** Zoo Tycoon Game ***" << endl << endl;
+   cout << fixed << setprecision(2);
+
+   do
+   {
+       cout << "Please select an option:" << endl;
+       cout << "1. Play Game" << endl;
+       cout << "2. Exit Game" << endl;
+       cin >> choice;
+
+       if (choice == 1)
+       {          
+           cout << "You are starting the game with the bank balance $" << z.getBalance() << endl;
+
+           cout << "Enter a number of tigers to buy (1 or 2): ";
+           cin >> n;
+
+           while (n < 1 || n > 2)
+           {
+               cout << "Enter a number of tigers to buy (1 or 2): ";
+               cin >> n;
+           }
+
+           if (n == 1)
+           {
+               Tiger tiger1(1, TIGER_COST, 1, 5 * BASE_FOOD_COST, 0.2 * TIGER_COST);
+               z.addTiger(tiger1);
+           }
+           else
+           {
+               Tiger tiger1(1, TIGER_COST, 1, 5 * BASE_FOOD_COST, 0.2 * TIGER_COST);
+               Tiger tiger2(1, TIGER_COST, 1, 5 * BASE_FOOD_COST, 0.2 * TIGER_COST);
+
+               z.addTiger(tiger1);
+               z.addTiger(tiger2);
+           }
+
+           cout << "Enter a number of penguins to buy (1 or 2): ";
+           cin >> n;
+
+           while (n < 1 || n > 2)
+           {
+               cout << "Enter a number of penguins to buy (1 or 2): ";
+               cin >> n;
+           }
+
+           if (n == 1)
+           {
+               Penguin penguin1(1, PENGUIN_COST, 5, BASE_FOOD_COST, 0.1 * PENGUIN_COST);
+               z.addPenguin(penguin1);
+           }
+           else
+           {
+               Penguin penguin1(1, PENGUIN_COST, 5, BASE_FOOD_COST, 0.1 * PENGUIN_COST);
+               Penguin penguin2(1, PENGUIN_COST, 5, BASE_FOOD_COST, 0.1 * PENGUIN_COST);
+
+               z.addPenguin(penguin1);
+               z.addPenguin(penguin2);
+           }
+
+           cout << "Enter a number of turtles to buy (1 or 2): ";
+           cin >> n;
+
+           while (n < 1 || n > 2)
+           {
+               cout << "Enter a number of turtles to buy (1 or 2): ";
+               cin >> n;
+           }
+
+           if (n == 1)
+           {
+               Turtle turtle1(1, TURTLE_COST, 10, 0.5 * BASE_FOOD_COST, 0.05 * TURTLE_COST);
+               z.addTurtle(turtle1);
+           }
+           else
+           {
+               Turtle turtle1(1, TURTLE_COST, 10, 0.5 * BASE_FOOD_COST, 0.05 * TURTLE_COST);
+               Turtle turtle2(1, TURTLE_COST, 10, 0.5 * BASE_FOOD_COST, 0.05 * TURTLE_COST);
+
+               z.addTurtle(turtle1);
+               z.addTurtle(turtle2);
+           }
+
+           play = true;
+           exit = true;
+       }
+       else if (choice == 2)
+       {          
+           cout << "Exiting from the game..." << endl << endl;
+           exit = true;
+       }
+       else
+       {
+           cout << "Invalid choice!" << endl;
+       }
+   } while (!exit);
+  
+   while (play)
+   {  
+       cout << "Day: " << ++day << endl;
+       cout << "Current balance: $" << z.getBalance() << endl;
+
+       z.incrementAge();  
+
+       z.generateRandomEvent();
+
+       z.calculateProfit();
+
+       cout << "Enter 1 if you like to add an adult animal: ";
+       cin >> purchase;
+      
+       if (purchase == 1)
+       {
+           cout << "Please select the type of animal they would like:" << endl;
+           cout << "1. Tiger" << endl;
+           cout << "2. Penguin" << endl;
+           cout << "3. Turtle" << endl;          
+           cin >> animalType;
+
+           if (animalType == 1)
+           {
+               Tiger tiger1(3, TIGER_COST, 1, 5 * BASE_FOOD_COST, 0.2 * TIGER_COST);
+               z.addTiger(tiger1);
+           }
+           else if (animalType == 2)
+           {
+               Penguin penguin1(3, PENGUIN_COST, 5, BASE_FOOD_COST, 0.1 * PENGUIN_COST);
+               z.addPenguin(penguin1);
+           }
+           else if (animalType == 3)
+           {
+               Tiger tiger1(1, TIGER_COST, 1, 5 * BASE_FOOD_COST, 0.2 * TIGER_COST);
+               z.addTiger(tiger1);
+           }
+           else
+           {
+               cout << "Invalid animal type!" << endl;
+           }
+       }
+
+       cout << "Enter 1 if you like to keep playing: ";
+       cin >> again;
+      
+       if (again != 1)
+       {
+           cout << "Final balance: $" << z.getBalance() << endl;
+           play = false;
+       }
+       else if(z.getBalance() <= 0)
+       {
+           cout << "You do not have more balance to play the game!" << endl;
+           play = false;
+       }
+   }
+   return 0;
+}
